@@ -5,11 +5,7 @@ export default function App() {
   return (
     <div className="quiz-page">
       <div className="top-bg-blob"></div>
-      <Quiz />
-      <Quiz />
-      <Quiz />
-      <Quiz />
-      <Quiz />
+      <Home />
       <div className="bottom-bg-blob"></div>
     </div>
   )

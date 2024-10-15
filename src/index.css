@@ -134,9 +134,6 @@ p {
 /* Quiz Homepage Media Queries */
 
 @media(min-width: 480px) {
-    .quiz-home {
-        height: 80vh;
-    }
 
     .quiz-home h1 {
         padding: 0 0 15px 0;
