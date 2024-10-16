@@ -1,9 +1,9 @@
-export default function Quiz() {
+export default function Quiz(props) {
     return (
 
         <div className="qa-section">
             <div className="question-section">
-                <h2>How would one say goodbye in Spanish?</h2>
+                <h2>{props.question}</h2>
             </div>
             <div className="answer-section">
                 <button className="answer-btn">Option 1 Option 1</button>
