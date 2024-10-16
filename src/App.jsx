@@ -17,14 +17,24 @@ export default function App() {
       })
   }, [])
 
-  const quizElements = quiz.map(qa => {
+  function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]]
+    }
+    return array
+  }
+
+  const quizElements = quiz.map((qa, index) => {
     return (
       <Quiz
+        key={index}
         question={qa.question}
+        choices={shuffle([...qa.incorrect_answers, qa.correct_answer])}
+        correctAnswer={qa.correct_answer}
       />
     )
   })
-
 
   return (
     <div className="quiz-page">
@@ -34,8 +44,3 @@ export default function App() {
     </div>
   )
 }
-
-// question: "",
-// correctAnswer: "",
-// incorrectAnswers: []
-// }
