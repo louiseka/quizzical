@@ -14,8 +14,6 @@ export default function App() {
           setQuiz(data.results)
           console.log(data.results)
         }
-
-
       })
   }, [])
 
