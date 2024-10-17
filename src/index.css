@@ -95,17 +95,25 @@ p {
 }
 
 
-.answer-btn {
+.answer-btn,
+.selected-answer-btn {
     border: 1px solid #4D5B9E;
     border-radius: 8px;
     margin: 10px;
     padding: 5px 20px;
-    background-color: transparent;
     color: #293264;
     font-family: "Inter", sans-serif;
     font-size: 1rem;
     font-weight: 500;
     cursor: pointer;
+}
+
+.answer-btn {
+    background-color: transparent;
+}
+
+.selected-answer-btn {
+    background-color: #D6DBF5;
 }
 
 /* Quiz Background */

@@ -7,6 +7,14 @@ export default function App() {
 
   const [quiz, setQuiz] = React.useState([])
 
+  function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]]
+    }
+    return array
+  }
+
   React.useEffect(() => {
     fetch("https://opentdb.com/api.php?amount=5&category=9&difficulty=medium&type=multiple")
       .then(res => res.json())
@@ -18,11 +26,14 @@ export default function App() {
             const incorrectAnswers = result.incorrect_answers.map(incorrectAnswer => {
               return he.decode(incorrectAnswer)
             })
+            const answerChoices = shuffle([...incorrectAnswers, correctAnswer])
             return {
               ...result,
               question: question,
               correct_answer: correctAnswer,
-              incorrect_answers: incorrectAnswers
+              incorrect_answers: incorrectAnswers,
+              choices: answerChoices,
+              selected_answer: undefined
             }
           })
           setQuiz(decodedResults)
@@ -31,21 +42,32 @@ export default function App() {
       })
   }, [])
 
-  function shuffle(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-      let j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]]
-    }
-    return array
+  //Event listener
+  function handleSelectedAnswer(choice, id) {
+    console.log(choice)
+    setQuiz(prevQuizData =>
+      prevQuizData.map((quizData, index) => {
+        if (index !== id) {
+          return quizData
+        }
+        return {
+          ...quizData,
+          selected_answer: choice
+        }
+      })
+    )
   }
 
   const quizElements = quiz.map((qa, index) => {
     return (
       <Quiz
         key={index}
+        id={index}
         question={qa.question}
-        choices={shuffle([...qa.incorrect_answers, qa.correct_answer])}
+        choices={qa.choices}
         correctAnswer={qa.correct_answer}
+        selectedAnswer={qa.selected_answer}
+        handleSelectedAnswer={handleSelectedAnswer}
       />
     )
   })
