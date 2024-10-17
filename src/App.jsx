@@ -1,6 +1,7 @@
 import Home from "./components/Home"
 import Quiz from "./components/Quiz"
 import React from "react"
+import he from "he"
 
 export default function App() {
 
@@ -11,7 +12,20 @@ export default function App() {
       .then(res => res.json())
       .then(data => {
         if (data.response_code === 0) {
-          setQuiz(data.results)
+          const decodedResults = data.results.map(result => {
+            const question = he.decode(result.question)
+            const correctAnswer = he.decode(result.correct_answer)
+            const incorrectAnswers = result.incorrect_answers.map(incorrectAnswer => {
+              return he.decode(incorrectAnswer)
+            })
+            return {
+              ...result,
+              question: question,
+              correct_answer: correctAnswer,
+              incorrect_answers: incorrectAnswers
+            }
+          })
+          setQuiz(decodedResults)
           console.log(data.results)
         }
       })
