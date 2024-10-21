@@ -7,6 +7,7 @@ export default function App() {
 
   const [quiz, setQuiz] = React.useState([])
   const [allQuestionsAnswered, setAllQuestionsAnswered] = React.useState(false)
+  const [score, setScore] = React.useState(0)
 
   function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -43,7 +44,6 @@ export default function App() {
       })
   }, [])
 
-  //Event listener
   function handleSelectedAnswer(choice, id) {
     setQuiz(prevQuizData =>
       prevQuizData.map((quizData, index) => {
@@ -64,7 +64,20 @@ export default function App() {
     console.log("all answered: ", allAnswered)
   }, [quiz])
 
+  function getTotalScore() {
+    let newScore = 0
+    quiz.forEach((question) => {
+      if (question.correct_answer === question.selected_answer) {
+        newScore++
+      }
+      setScore(newScore)
+      console.log("Score:", newScore)
+    })
+  }
 
+  function checkAnswers() {
+    getTotalScore()
+  }
 
   const quizElements = quiz.map((qa, index) => {
     return (
@@ -86,7 +99,7 @@ export default function App() {
     <div className="quiz-page">
       <div className="top-bg-blob"></div>
       {quizElements}
-      {renderCheckBtn && <button className="action-btn">Check answers</button>}
+      {renderCheckBtn && <button className="action-btn" onClick={checkAnswers}>Check answers</button>}
       <div className="bottom-bg-blob"></div>
     </div>
   )
