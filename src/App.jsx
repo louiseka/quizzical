@@ -95,14 +95,21 @@ export default function App() {
     )
   })
 
-  const renderCheckBtn = allQuestionsAnswered && quiz.length > 0
+  const checkAnswersBtn = allQuestionsAnswered && quiz.length > 0
+
+  let btnText = ""
+  if (checkAnswersBtn) {
+    btnText = "Check answers"
+  } if (showResults === true) {
+    btnText = "Play again"
+  }
 
 
   return (
     <div className="quiz-page">
       <div className="top-bg-blob"></div>
       {quizElements}
-      {renderCheckBtn && <button className="action-btn" onClick={checkAnswers}>Check answers</button>}
+      {checkAnswersBtn && <button className="action-btn" onClick={checkAnswers}>{btnText}</button>}
       {showResults && <p className="quiz-results">Your scored {score} /5 correct answers </p>}
       <div className="bottom-bg-blob"></div>
     </div>
