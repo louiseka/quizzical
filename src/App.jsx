@@ -6,6 +6,7 @@ import he from "he"
 export default function App() {
 
   const [quiz, setQuiz] = React.useState([])
+  const [allQuestionsAnswered, setAllQuestionsAnswered] = React.useState(false)
 
   function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -44,7 +45,6 @@ export default function App() {
 
   //Event listener
   function handleSelectedAnswer(choice, id) {
-    console.log(choice)
     setQuiz(prevQuizData =>
       prevQuizData.map((quizData, index) => {
         if (index !== id) {
@@ -57,6 +57,14 @@ export default function App() {
       })
     )
   }
+
+  React.useEffect(() => {
+    const allAnswered = quiz.every((question) => question.selected_answer !== undefined)
+    setAllQuestionsAnswered(allAnswered)
+    console.log("all answered: ", allAnswered)
+  }, [quiz])
+
+
 
   const quizElements = quiz.map((qa, index) => {
     return (
@@ -72,10 +80,13 @@ export default function App() {
     )
   })
 
+  const renderCheckBtn = allQuestionsAnswered && quiz.length > 0
+
   return (
     <div className="quiz-page">
       <div className="top-bg-blob"></div>
       {quizElements}
+      {renderCheckBtn && <button className="action-btn">Check answers</button>}
       <div className="bottom-bg-blob"></div>
     </div>
   )
