@@ -8,6 +8,7 @@ export default function App() {
   const [quiz, setQuiz] = React.useState([])
   const [allQuestionsAnswered, setAllQuestionsAnswered] = React.useState(false)
   const [score, setScore] = React.useState(0)
+  const [showResults, setShowResults] = React.useState(false)
 
   function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -77,6 +78,7 @@ export default function App() {
 
   function checkAnswers() {
     getTotalScore()
+    setShowResults(true)
   }
 
   const quizElements = quiz.map((qa, index) => {
@@ -95,11 +97,13 @@ export default function App() {
 
   const renderCheckBtn = allQuestionsAnswered && quiz.length > 0
 
+
   return (
     <div className="quiz-page">
       <div className="top-bg-blob"></div>
       {quizElements}
       {renderCheckBtn && <button className="action-btn" onClick={checkAnswers}>Check answers</button>}
+      {showResults && <p className="quiz-results">Your scored {score} /5 correct answers </p>}
       <div className="bottom-bg-blob"></div>
     </div>
   )
