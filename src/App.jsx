@@ -46,6 +46,9 @@ export default function App() {
   }, [])
 
   function handleSelectedAnswer(choice, id) {
+    if (showResults) {
+      return
+    }
     setQuiz(prevQuizData =>
       prevQuizData.map((quizData, index) => {
         if (index !== id) {
@@ -91,6 +94,7 @@ export default function App() {
         correctAnswer={qa.correct_answer}
         selectedAnswer={qa.selected_answer}
         handleSelectedAnswer={handleSelectedAnswer}
+        showResults={showResults}
       />
     )
   })

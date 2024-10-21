@@ -102,6 +102,8 @@ p {
 
 
 .answer-btn,
+.incorrect-answer,
+.correct-answer,
 .selected-answer-btn {
     border: 1px solid #4D5B9E;
     border-radius: 8px;
@@ -116,6 +118,14 @@ p {
 
 .answer-btn {
     background-color: transparent;
+}
+
+.correct-answer {
+    background-color: #94D7A2;
+}
+
+.incorrect-answer {
+    background-color: #F8BCBC;
 }
 
 .selected-answer-btn {
