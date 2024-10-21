@@ -1,10 +1,24 @@
 export default function Quiz(props) {
 
     const answerOptions = props.choices.map((choice, index) => {
-        const answerClass = props.selectedAnswer === choice ? "selected-answer-btn" : "answer-btn"
-        return <button className={answerClass} key={index} onClick={() => props.handleSelectedAnswer(choice, props.id)}> {choice} </button>
-    })
+        function answerClass() {
+            if (props.showResults && choice === props.correctAnswer) {
+                return "correct-answer"
+            }
+            if (props.showResults && props.selectedAnswer === choice) {
+                return "incorrect-answer"
+            }
+            if (props.selectedAnswer === choice) {
+                return "selected-answer-btn"
+            }
+            else {
+                return "answer-btn"
+            }
 
+        }
+        return <button className={answerClass()} key={index} onClick={() => props.handleSelectedAnswer(choice, props.id)}> {choice} </button>
+
+    })
 
 
     return (
