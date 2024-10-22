@@ -10,6 +10,7 @@ export default function App() {
   const [allQuestionsAnswered, setAllQuestionsAnswered] = React.useState(false)
   const [score, setScore] = React.useState(0)
   const [showResults, setShowResults] = React.useState(false)
+  const [isLoading, setIsLoading] = React.useState(false)
 
   function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -20,6 +21,10 @@ export default function App() {
   }
 
   React.useEffect(() => {
+    if (!startQuiz) {
+      return
+    }
+    setIsLoading(true)
     fetch("https://opentdb.com/api.php?amount=5&category=9&difficulty=medium&type=multiple")
       .then(res => res.json())
       .then(data => {
@@ -43,6 +48,7 @@ export default function App() {
           setQuiz(decodedResults)
           console.log(data.results)
         }
+        setIsLoading(false)
       })
   }, [startQuiz])
 
@@ -131,6 +137,7 @@ export default function App() {
       {startQuiz ? quizElements : homeElements}
       {checkAnswersBtn && <button className="action-btn" onClick={showResults ? newGame : checkAnswers}>{btnText}</button>}
       {showResults && <p className="quiz-results">Your scored {score} /5 correct answers </p>}
+      {isLoading && <p className="loading-text"> Please wait whilst the quiz loads...</p>}
       <div className="bottom-bg-blob"></div>
     </div>
   )
