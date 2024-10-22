@@ -20,11 +20,9 @@ export default function Quiz(props) {
 
     })
 
-
     return (
 
         <div className="qa-section">
-
             <div className="question-section">
                 <h2>{props.question}</h2>
             </div>

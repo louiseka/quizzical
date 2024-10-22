@@ -12,6 +12,8 @@ export default function App() {
   const [showResults, setShowResults] = React.useState(false)
   const [isLoading, setIsLoading] = React.useState(false)
 
+  //Shuffling correct answer into incorrect answers array
+
   function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
@@ -20,6 +22,7 @@ export default function App() {
     return array
   }
 
+  //Fetching API, its data and creating loading text
   React.useEffect(() => {
     if (!startQuiz) {
       return
@@ -46,18 +49,17 @@ export default function App() {
             }
           })
           setQuiz(decodedResults)
-          console.log(data.results)
         }
         setIsLoading(false)
       })
   }, [startQuiz])
 
+  //Start Quiz render  
   function renderStartQuiz() {
     setStartQuiz(true)
   }
 
-
-
+  //Recording user choices  
   function handleSelectedAnswer(choice, id) {
     if (showResults) {
       return
@@ -75,11 +77,13 @@ export default function App() {
     )
   }
 
+  //Checking all questions are answered
   React.useEffect(() => {
     const allAnswered = quiz.every((question) => question.selected_answer !== undefined)
     setAllQuestionsAnswered(allAnswered)
   }, [quiz])
 
+  //Calculating score  
   function getTotalScore() {
     let newScore = 0
     quiz.forEach((question) => {
@@ -90,17 +94,21 @@ export default function App() {
     })
   }
 
+  //onClick for Check Answers btn  
   function checkAnswers() {
     getTotalScore()
     setShowResults(true)
   }
 
+  //onClick for Play Again btn  
   function newGame() {
     setQuiz([])
     setScore(0)
     setShowResults(false)
     setStartQuiz(false)
   }
+
+  //Components and its logic for rendering
 
   const quizElements = quiz.map((qa, index) => {
     return (
