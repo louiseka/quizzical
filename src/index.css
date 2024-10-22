@@ -20,6 +20,7 @@ p {
     margin: 0;
 }
 
+/* Function buttons */
 .action-btn {
     border: none;
     border-radius: 5px;
@@ -53,7 +54,7 @@ p {
 }
 
 .quiz-home h1 {
-    margin: 0 0 20px 0px;
+    margin: 0 0 0.5em 0;
 }
 
 .quiz-home h1,
@@ -64,7 +65,7 @@ p {
 
 .quiz-home p {
     text-align: center;
-    padding: 0 10px 35px;
+    padding: 0 0.65em 2.2em;
     line-height: 1.2;
     max-width: 500px;
 }
@@ -75,7 +76,7 @@ p {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-top: 40px;
+    margin-top: 2.5em;
 }
 
 .quiz-page h1 {
@@ -84,8 +85,8 @@ p {
 }
 
 .qa-section {
-    margin: 10px auto 15px;
-    padding: 0 0 0 15px;
+    margin: 0.63em auto 0.94em;
+    padding: 0 0 0 0.94em;
     max-width: 600px;
     width: 100%;
     border-bottom: 1px solid #DBDEF0;
@@ -98,11 +99,11 @@ p {
     margin: 0;
     font-size: 1rem;
     font-weight: 600;
-    padding: 0 15px 15px 15px;
+    padding: 0 0.95em 0.95em;
 }
 
 .quiz-results {
-    padding: 20px 0 30px;
+    padding: 1.25em 0 1.88em;
 }
 
 .quiz-results,
@@ -113,9 +114,8 @@ p {
 }
 
 .answer-section {
-    padding: 0 15px 15px;
+    padding: 0 0.94em 0.94em;
 }
-
 
 .answer-btn,
 .incorrect-answer,
@@ -123,8 +123,8 @@ p {
 .selected-answer-btn {
     border: 1px solid #4D5B9E;
     border-radius: 8px;
-    margin: 10px;
-    padding: 5px 20px;
+    margin: 0.625em;
+    padding: 0.32em 1.25em;
     color: #293264;
     font-family: "Inter", sans-serif;
     font-size: 1rem;
@@ -134,6 +134,10 @@ p {
 
 .answer-btn {
     background-color: transparent;
+}
+
+.answer-btn:hover {
+    background-color: #D6DBF5
 }
 
 .correct-answer {
@@ -172,7 +176,7 @@ p {
     z-index: 100;
 }
 
-/* Quiz Homepage Media Queries */
+/* Quiz Media Queries */
 
 @media (min-width: 1000px) {
     .top-bg-blob {
@@ -187,20 +191,20 @@ p {
 
 @media (min-width: 630px) {
     .qa-section h2 {
-        padding: 0 0 15px 0;
+        padding: 0 0 0.8em 0;
         font-size: 1.2rem;
     }
 
     .qa-section {
-        margin: 10px auto 20px;
+        margin: 0.625em auto 1.25em;
     }
 
     .answer-section {
-        padding: 0 0 15px 0;
+        padding: 0 0 0.95em 0;
     }
 
     .quiz-page h1 {
-        margin: 0 0 25px 0;
+        margin: 0 0 0.625em 0;
         text-align: center;
     }
 }
@@ -208,21 +212,17 @@ p {
 @media(min-width: 480px) {
 
     .quiz-home p {
-        padding: 0 15px 35px;
+        padding: 0 0.94em 2.18em;
     }
 
     .qa-section {
         padding: 0;
     }
 
-
-
     .quiz-page {
         height: 100vh;
         margin-top: 0;
         margin-left: 0;
     }
-
-
 
 }
