@@ -44,12 +44,10 @@ export default function App() {
           console.log(data.results)
         }
       })
-  }, [])
+  }, [startQuiz])
 
   function renderStartQuiz() {
     setStartQuiz(true)
-
-    console.log("Quiz started")
   }
 
 
@@ -91,9 +89,12 @@ export default function App() {
     setShowResults(true)
   }
 
-
-
-
+  function newGame() {
+    setQuiz([])
+    setScore(0)
+    setShowResults(false)
+    setStartQuiz(false)
+  }
 
   const quizElements = quiz.map((qa, index) => {
     return (
@@ -128,7 +129,7 @@ export default function App() {
     <div className="quiz-page">
       <div className="top-bg-blob"></div>
       {startQuiz ? quizElements : homeElements}
-      {checkAnswersBtn && <button className="action-btn" onClick={checkAnswers}>{btnText}</button>}
+      {checkAnswersBtn && <button className="action-btn" onClick={showResults ? newGame : checkAnswers}>{btnText}</button>}
       {showResults && <p className="quiz-results">Your scored {score} /5 correct answers </p>}
       <div className="bottom-bg-blob"></div>
     </div>
