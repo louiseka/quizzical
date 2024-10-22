@@ -132,11 +132,12 @@ export default function App() {
     />
 
   return (
-    <div className="quiz-page">
+    <div className={startQuiz ? "quiz-page" : "quiz-home"}>
       <div className="top-bg-blob"></div>
+      {startQuiz && <h1> Quzzical</h1>}
       {startQuiz ? quizElements : homeElements}
-      {checkAnswersBtn && <button className="action-btn" onClick={showResults ? newGame : checkAnswers}>{btnText}</button>}
       {showResults && <p className="quiz-results">Your scored {score} /5 correct answers </p>}
+      {checkAnswersBtn && <button className="action-btn" onClick={showResults ? newGame : checkAnswers}>{btnText}</button>}
       {isLoading && <p className="loading-text"> Please wait whilst the quiz loads...</p>}
       <div className="bottom-bg-blob"></div>
     </div>
