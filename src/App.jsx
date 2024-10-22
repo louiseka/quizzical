@@ -6,6 +6,7 @@ import he from "he"
 export default function App() {
 
   const [quiz, setQuiz] = React.useState([])
+  const [startQuiz, setStartQuiz] = React.useState(false)
   const [allQuestionsAnswered, setAllQuestionsAnswered] = React.useState(false)
   const [score, setScore] = React.useState(0)
   const [showResults, setShowResults] = React.useState(false)
@@ -45,6 +46,14 @@ export default function App() {
       })
   }, [])
 
+  function renderStartQuiz() {
+    setStartQuiz(true)
+
+    console.log("Quiz started")
+  }
+
+
+
   function handleSelectedAnswer(choice, id) {
     if (showResults) {
       return
@@ -65,7 +74,6 @@ export default function App() {
   React.useEffect(() => {
     const allAnswered = quiz.every((question) => question.selected_answer !== undefined)
     setAllQuestionsAnswered(allAnswered)
-    console.log("all answered: ", allAnswered)
   }, [quiz])
 
   function getTotalScore() {
@@ -75,7 +83,6 @@ export default function App() {
         newScore++
       }
       setScore(newScore)
-      console.log("Score:", newScore)
     })
   }
 
@@ -83,6 +90,10 @@ export default function App() {
     getTotalScore()
     setShowResults(true)
   }
+
+
+
+
 
   const quizElements = quiz.map((qa, index) => {
     return (
@@ -108,11 +119,15 @@ export default function App() {
     btnText = "Play again"
   }
 
+  const homeElements =
+    <Home
+      renderStartQuiz={renderStartQuiz}
+    />
 
   return (
     <div className="quiz-page">
       <div className="top-bg-blob"></div>
-      {quizElements}
+      {startQuiz ? quizElements : homeElements}
       {checkAnswersBtn && <button className="action-btn" onClick={checkAnswers}>{btnText}</button>}
       {showResults && <p className="quiz-results">Your scored {score} /5 correct answers </p>}
       <div className="bottom-bg-blob"></div>
