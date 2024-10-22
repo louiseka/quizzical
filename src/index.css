@@ -37,7 +37,7 @@ p {
 }
 
 .quiz-page .action-btn {
-    margin: 0 auto;
+    margin: 0 auto 25px;
 }
 
 /* Quiz Homepage */
@@ -53,14 +53,18 @@ p {
 }
 
 .quiz-home h1 {
-    padding: 0 0 15px 0;
+    margin: 0 0 20px 0px;
+}
+
+.quiz-home h1,
+.quiz-page h1 {
     font-size: 2.5rem;
     letter-spacing: 0.2rem;
 }
 
 .quiz-home p {
     text-align: center;
-    padding: 0 10px 50px;
+    padding: 0 10px 35px;
     line-height: 1.2;
     max-width: 500px;
 }
@@ -71,10 +75,17 @@ p {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-top: 40px;
+}
+
+.quiz-page h1 {
+    margin-bottom: 15px;
+    margin-left: 15px;
 }
 
 .qa-section {
-    margin: 10px auto 20px;
+    margin: 10px auto 15px;
+    padding: 0 0 0 15px;
     max-width: 600px;
     width: 100%;
     border-bottom: 1px solid #DBDEF0;
@@ -85,9 +96,13 @@ p {
 
 .qa-section h2 {
     margin: 0;
-    font-size: 1.3rem;
+    font-size: 1rem;
     font-weight: 600;
-    padding: 0 0 15px 0;
+    padding: 0 15px 15px 15px;
+}
+
+.quiz-results {
+    padding: 20px 0 30px;
 }
 
 .quiz-results,
@@ -98,7 +113,7 @@ p {
 }
 
 .answer-section {
-    padding: 0 0 15px 0;
+    padding: 0 15px 15px;
 }
 
 
@@ -141,7 +156,7 @@ p {
     top: -100px;
     background-color: #fffad1;
     border-radius: 20% 30% 0 100% / 0 0 100% 100%;
-    width: 200px;
+    max-width: 200px;
     height: 300px;
     z-index: 100;
 }
@@ -152,28 +167,62 @@ p {
     bottom: -100px;
     background-color: #deebf8;
     border-radius: 0 70% 30% 0 / 100% 100% 100% 80%;
-    width: 300px;
+    max-width: 300px;
     height: 300px;
     z-index: 100;
 }
 
 /* Quiz Homepage Media Queries */
 
-@media(min-width: 480px) {
+@media (min-width: 1000px) {
+    .top-bg-blob {
+        right: 0px;
+        width: 200px;
+    }
 
-    .quiz-home h1 {
+    .bottom-bg-blob {
+        width: 300px;
+    }
+}
+
+@media (min-width: 630px) {
+    .qa-section h2 {
+        padding: 0 0 15px 0;
+        font-size: 1.2rem;
+    }
+
+    .qa-section {
+        margin: 10px auto 20px;
+    }
+
+    .answer-section {
         padding: 0 0 15px 0;
     }
 
-    .quiz-home p {
-        padding: 0 15px 45px;
+    .quiz-page h1 {
+        margin: 0 0 25px 0;
+        text-align: center;
     }
+}
+
+@media(min-width: 480px) {
+
+    .quiz-home p {
+        padding: 0 15px 35px;
+    }
+
+    .qa-section {
+        padding: 0;
+    }
+
+
 
     .quiz-page {
         height: 100vh;
+        margin-top: 0;
+        margin-left: 0;
     }
 
-    .top-bg-blob {
-        right: 0px;
-    }
+
+
 }
