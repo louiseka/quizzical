@@ -136,10 +136,6 @@ p {
     background-color: transparent;
 }
 
-.answer-btn:hover {
-    background-color: #D6DBF5
-}
-
 .correct-answer {
     background-color: #94D7A2;
 }
