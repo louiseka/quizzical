@@ -1,5 +1,4 @@
 export default function Home(props) {
-
     return (
         <main>
             <div className="quiz-home">
