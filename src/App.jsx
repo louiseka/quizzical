@@ -38,14 +38,14 @@ export default function App() {
             const incorrectAnswers = result.incorrect_answers.map(incorrectAnswer => {
               return he.decode(incorrectAnswer)
             })
-            const answerChoices = shuffle([...incorrectAnswers, correctAnswer])
+            const choices = shuffle([...incorrectAnswers, correctAnswer])
             return {
               ...result,
-              question: question,
-              correct_answer: correctAnswer,
-              incorrect_answers: incorrectAnswers,
-              choices: answerChoices,
-              selected_answer: undefined
+              question,
+              correctAnswer,
+              incorrectAnswers,
+              choices,
+              selectedAnswer: undefined
             }
           })
           setQuiz(decodedResults)
@@ -71,7 +71,7 @@ export default function App() {
         }
         return {
           ...quizData,
-          selected_answer: choice
+          selectedAnswer: choice
         }
       })
     )
@@ -79,7 +79,7 @@ export default function App() {
 
   //Checking all questions are answered
   React.useEffect(() => {
-    const allAnswered = quiz.every((question) => question.selected_answer !== undefined)
+    const allAnswered = quiz.every((question) => question.selectedAnswer !== undefined)
     setAllQuestionsAnswered(allAnswered)
   }, [quiz])
 
@@ -87,11 +87,11 @@ export default function App() {
   function getTotalScore() {
     let newScore = 0
     quiz.forEach((question) => {
-      if (question.correct_answer === question.selected_answer) {
+      if (question.correctAnswer === question.selectedAnswer) {
         newScore++
       }
-      setScore(newScore)
     })
+    setScore(newScore)
   }
 
   //onClick for Check Answers btn  
@@ -117,18 +117,18 @@ export default function App() {
         id={index}
         question={qa.question}
         choices={qa.choices}
-        correctAnswer={qa.correct_answer}
-        selectedAnswer={qa.selected_answer}
+        correctAnswer={qa.correctAnswer}
+        selectedAnswer={qa.selectedAnswer}
         handleSelectedAnswer={handleSelectedAnswer}
         showResults={showResults}
       />
     )
   })
 
-  const checkAnswersBtn = allQuestionsAnswered && quiz.length > 0
+  const showCheckAnswersBtn = allQuestionsAnswered && quiz.length > 0
 
   let btnText = ""
-  if (checkAnswersBtn) {
+  if (showCheckAnswersBtn) {
     btnText = "Check answers"
   } if (showResults === true) {
     btnText = "Play again"
@@ -145,7 +145,7 @@ export default function App() {
       {startQuiz && <h1> Quzzical</h1>}
       {startQuiz ? quizElements : homeElements}
       {showResults && <p className="quiz-results">Your scored {score} /5 correct answers </p>}
-      {checkAnswersBtn && <button className="action-btn" onClick={showResults ? newGame : checkAnswers}>{btnText}</button>}
+      {showCheckAnswersBtn && <button className="action-btn" onClick={showResults ? newGame : checkAnswers}>{btnText}</button>}
       {isLoading && <p className="loading-text"> Please wait whilst the quiz loads...</p>}
       <div className="bottom-bg-blob"></div>
     </div>

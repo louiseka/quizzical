@@ -5,16 +5,13 @@ export default function Quiz(props) {
             if (props.showResults && choice === props.correctAnswer) {
                 return "correct-answer"
             }
-            if (props.showResults && props.selectedAnswer === choice) {
+            if (props.showResults && choice === props.selectedAnswer) {
                 return "incorrect-answer"
             }
             if (props.selectedAnswer === choice) {
                 return "selected-answer-btn"
             }
-            else {
-                return "answer-btn"
-            }
-
+            return "answer-btn"
         }
         return <button className={answerClass()} key={index} onClick={() => props.handleSelectedAnswer(choice, props.id)}> {choice} </button>
 
