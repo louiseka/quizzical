@@ -5,4 +5,8 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   base: '/quizzical/',
+  test: {
+    setupFiles: ["./test-setup.js"],
+    environment: 'jsdom'
+  }
 })
