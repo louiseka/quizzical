@@ -4,7 +4,7 @@ import { render, screen } from "@testing-library/react";
 
 import Home from "./Home"
 
-describe("Quiz Component", () => {
+describe("Home Component", () => {
     test("renderStartQuiz prop is called upon clicking Start Quiz", async () => {
         //Arrange
         const user = userEvent.setup()
