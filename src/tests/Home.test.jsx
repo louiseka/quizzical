@@ -2,7 +2,7 @@ import { test, expect, vi, describe } from "vitest";
 import { userEvent } from "@testing-library/user-event";
 import { render, screen } from "@testing-library/react";
 
-import Home from "./Home"
+import Home from "../components/Home"
 
 describe("Home Component", () => {
     test("renderStartQuiz prop is called upon clicking Start Quiz", async () => {
