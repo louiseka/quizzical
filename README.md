@@ -22,6 +22,8 @@ I have used React for this project:
 - I could manage and track the state for each stage of the quiz.
 - I could use useEffect so code would run based on dependencies
 
+I have also used Vitest to create some basic tests. 
+
 ## Implementations for future
 
 - Could enable the ability for a user to choose which type of Quiz they would like to do
